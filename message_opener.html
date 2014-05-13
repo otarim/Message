@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id="btn1">all</button>
+	<button id="btn2">send to frame1</button>
+	<button id="btn3">send to frame2</button>
+	<button id="btn4">send to root</button>
+	<div id="mes"></div>
+</body>
+<script src="message.js"></script>
+<script>
+	var m = new Message({
+		token: 'opener'
+	});
+	var t1 = m.add(window.opener.frames[1],'fuck');
+	var t2 = m.add(window.opener,'root');
+	var t3 = m.add(window.opener.frames[0],'root');
+	var btn1 = document.getElementById('btn1');
+	var btn2 = document.getElementById('btn2');
+	var btn3 = document.getElementById('btn3');
+	var btn4 = document.getElementById('btn4');
+	m.onMessage(function(e){
+		document.getElementById('mes').innerHTML += e.data;
+	})
+	btn1.onclick = function(){
+		m.postMessage('我是 opener!')
+	}
+	btn2.onclick = function(){
+		m.postMessage('我是 opener!',t3)
+	}
+	btn3.onclick = function(){
+		m.postMessage('我是 opener!',t1)
+	}
+	btn4.onclick = function(){
+		m.postMessage('我是 opener!',t2)
+	}
+</script>
+</html>

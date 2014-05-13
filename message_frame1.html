@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id="btn1">all</button>
+	<button id="btn2">send to frame2</button>
+	<button id="btn3">send to root</button>
+	<div id="mes"></div>
+</body>
+<script src="message.js"></script>
+<script>
+	var m = new Message({
+		token: 'otarim'
+	});
+	var t2 = m.add(parent,'root');
+	var t1 = m.add(parent.frames[1],'fuck');
+	var btn1 = document.getElementById('btn1');
+	var btn2 = document.getElementById('btn2');
+	var btn3 = document.getElementById('btn3');
+	m.onMessage(function(e){
+		document.getElementById('mes').innerHTML += e.data;
+	})
+	btn1.onclick = function(){
+		m.postMessage('我是 frame1!')
+	}
+	btn2.onclick = function(){
+		m.postMessage('我是 frame1!',t1)
+	}
+	btn3.onclick = function(){
+		m.postMessage('我是 frame1!',t2)
+	}
+</script>
+</html>
