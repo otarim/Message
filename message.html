@@ -5,10 +5,8 @@
 	<title>Document</title>
 </head>
 <body>
-	<!-- http://www.test15.com:8080/otaCode/message_frame.html -->
-	<iframe src="http://www.otarim.com/demo/message_frame1.html" id="xx"></iframe>
-	<!-- <iframe src="http://127.0.0.1:8080/otaCode/message_frame1.html" id="xx"></iframe> -->
-	<iframe src="http://192.168.1.106:8080/otaCode/message_frame.html" id="oo"></iframe><br>
+	<iframe src="http://www.otarim.com/demo/message/message_frame1.html"></iframe>
+	<iframe src="http://www.u190.com/statics/demo/message_frame.html"></iframe><br>
 	<button id="btn1">all</button>
 	<button id="btn2">send to frame1</button>
 	<button id="btn3">send to frame2</button>
@@ -16,7 +14,6 @@
 	<button id="btn5">send to open window</button>
 	<div id="mes"></div>
 </body>
-<script src="message.js"></script>
 <script src="message.js"></script>
 <script>
 	var m = new Message({
@@ -43,7 +40,7 @@
 		m.postMessage('我是 root!',t2)
 	}
 	btn4.onclick = function(){
-		m.postMessage('我是 root!',t3 = m.add(window.open('http://www.otarim.com/demo/message_opener.html','_blank','width=600,height=400,location=yes,status=yes,toolbar=no,resizable=no'),'opener'))
+		m.postMessage('我是 root!',t3 = m.add(window.open('http://otarim.qiniudn.com/message_opener.html','_blank','width=600,height=400,location=yes,status=yes,toolbar=no,resizable=no'),'opener'))
 	}
 	btn5.onclick = function(){
 		m.postMessage('我是 root!',t3)
